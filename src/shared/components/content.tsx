@@ -1,5 +1,5 @@
-import * as React from "react"
 import { mergeClass } from "@shared/libs"
+import * as React from "react"
 
 interface ArticleContentProps {
   children: React.ReactNode

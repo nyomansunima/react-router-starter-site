@@ -1,3 +1,5 @@
+import { Button, CenteredLayout, Footer, Header } from "@shared/components"
+import { loadServerEnv } from "@shared/libs"
 import {
   isRouteErrorResponse,
   Link,
@@ -9,8 +11,6 @@ import {
   useLoaderData,
 } from "react-router"
 import "@shared/styles/globals.css"
-import { Button, CenteredLayout, Footer, Header } from "@shared/components"
-import { loadServerEnv } from "@shared/libs"
 
 interface LayoutProps {
   children: React.ReactNode

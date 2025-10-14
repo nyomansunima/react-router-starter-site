@@ -1,6 +1,6 @@
-import * as React from "react"
 import * as TooltipPrimitive from "@radix-ui/react-tooltip"
 import { mergeClass } from "@shared/libs"
+import * as React from "react"
 
 const TooltipProvider = TooltipPrimitive.Provider
 
@@ -35,4 +35,4 @@ const TooltipContent = ({
 )
 TooltipContent.displayName = TooltipPrimitive.Content.displayName
 
-export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider }
+export { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger }
