@@ -1,47 +1,47 @@
-import * as React from "react"
-import { Link, useLocation } from "react-router"
-import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover"
+import * as React from "react";
+import { Link, useLocation } from "react-router";
+import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 
-interface NavMenuItemProps {
-  children: React.ReactNode
-  href: string
-}
+type NavMenuItemProps = {
+  children: React.ReactNode;
+  href: string;
+};
 
 export function NavMenuItem({ children, href }: NavMenuItemProps) {
   return (
-    <li className="flex w-full col-span-1">
+    <li className="col-span-1 flex w-full">
       <Link
+        className="hover:-translate-x-1 flex items-center justify-center text-foreground text-sm transition-all duration-300 hover:text-link"
         to={href}
-        className="flex justify-center items-center text-sm transition-all duration-300 text-foreground hover:-translate-x-1 hover:text-link"
       >
         {children}
       </Link>
     </li>
-  )
+  );
 }
 
 export function Menu() {
-  const [open, setOpen] = React.useState(false)
-  const location = useLocation()
+  const [open, setOpen] = React.useState(false);
+  const _location = useLocation();
 
   React.useEffect(() => {
-    setOpen(false)
-  }, [location.pathname])
+    setOpen(false);
+  }, []);
 
   return (
-    <Popover open={open} onOpenChange={setOpen}>
+    <Popover onOpenChange={setOpen} open={open}>
       <PopoverTrigger
-        className="flex justify-center items-center cursor-pointer group relative h-10 w-10"
         aria-label="Menu Button"
+        className="group relative flex h-10 w-10 cursor-pointer items-center justify-center"
       >
-        <span className="h-10 w-10 flex justify-center items-center border-2 border-border border-dashed absolute rounded-2xl text-sm bg-surface transition-all duration-300 -translate-x-1 -rotate-6 group-hover:-rotate-12 group-hover:-translate-x-2 group-hover:border-link"></span>
-        <span className="h-10 w-10 flex justify-center items-center border-2 border-border border-dashed absolute rounded-2xl text-sm bg-surface transition-all duration-300 translate-x-1 rotate-6 group-hover:rotate-12 group-hover:translate-x-2 group-hover:border-link"></span>
-        <span className="h-10 w-10 flex justify-center items-center border-2 border-border border-dashed absolute rounded-2xl text-sm bg-surface transition-all duration-300 group-hover:translate-y-2 group-hover:border-link">
-          <i className="fi text-xs fi-br-flame"></i>
+        <span className="-translate-x-1 -rotate-6 group-hover:-rotate-12 group-hover:-translate-x-2 absolute flex h-10 w-10 items-center justify-center rounded-2xl border-2 border-border border-dashed bg-surface text-sm transition-all duration-300 group-hover:border-link" />
+        <span className="absolute flex h-10 w-10 translate-x-1 rotate-6 items-center justify-center rounded-2xl border-2 border-border border-dashed bg-surface text-sm transition-all duration-300 group-hover:translate-x-2 group-hover:rotate-12 group-hover:border-link" />
+        <span className="absolute flex h-10 w-10 items-center justify-center rounded-2xl border-2 border-border border-dashed bg-surface text-sm transition-all duration-300 group-hover:translate-y-2 group-hover:border-link">
+          <i className="fi fi-br-flame text-xs" />
         </span>
       </PopoverTrigger>
       <PopoverContent>
-        <ul className="grid grid-cols-2 w-full gap-x-4 gap-y-4">
+        <ul className="grid w-full grid-cols-2 gap-x-4 gap-y-4">
           <NavMenuItem href="/works">Works</NavMenuItem>
           <NavMenuItem href="/collabs">Collabs</NavMenuItem>
           <NavMenuItem href="/crafts">Crafts</NavMenuItem>
@@ -54,5 +54,5 @@ export function Menu() {
         </ul>
       </PopoverContent>
     </Popover>
-  )
+  );
 }

@@ -1,15 +1,15 @@
 function isBrowser() {
-  return typeof window !== "undefined"
+  return typeof window !== "undefined";
 }
 
 export function loadServerEnv() {
-  const env = process.env
-  return env
+  const env = process.env;
+  return env;
 }
 
 export function loadConfig() {
-  const isOnBrowser = isBrowser()
-  const ENV = isOnBrowser ? window.__ENV__ : process.env
+  const isOnBrowser = isBrowser();
+  const ENV = isOnBrowser ? window.__ENV__ : process.env;
 
   return {
     app: {
@@ -24,11 +24,12 @@ export function loadConfig() {
     kit: {
       key: ENV.KIT_API_KEY,
     },
-  } as const
+  } as const;
 }
 
 declare global {
+  // biome-ignore lint/nursery/useConsistentTypeDefinitions: Must be use interface
   interface Window {
-    __ENV__: any
+    __ENV__: any;
   }
 }

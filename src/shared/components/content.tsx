@@ -1,17 +1,17 @@
-import { mergeClass } from "@shared/libs"
-import * as React from "react"
+import { mergeClass } from "@shared/libs";
+import type * as React from "react";
 
-interface ArticleContentProps {
-  children: React.ReactNode
-  className?: string
-}
+type ArticleContentProps = {
+  children: React.ReactNode;
+  className?: string;
+};
 
 export function ArticleContent({ children, className }: ArticleContentProps) {
   return (
     <article
-      className={`${mergeClass("prose prose-p:leading-7 prose-li:leading-7 prose-a:text-link", className)}`}
+      className={`${mergeClass("prose prose-a:text-link prose-li:leading-7 prose-p:leading-7", className)}`}
     >
       {children}
     </article>
-  )
+  );
 }

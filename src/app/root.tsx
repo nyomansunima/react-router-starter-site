@@ -1,5 +1,5 @@
-import { Button, CenteredLayout, Footer, Header } from "@shared/components"
-import { loadServerEnv } from "@shared/libs"
+import { Button, CenteredLayout, Footer, Header } from "@shared/components";
+import { loadServerEnv } from "@shared/libs";
 import {
   isRouteErrorResponse,
   Link,
@@ -9,34 +9,34 @@ import {
   Scripts,
   ScrollRestoration,
   useLoaderData,
-} from "react-router"
-import "@shared/styles/globals.css"
+} from "react-router";
+import "@shared/styles/globals.css";
 
-interface LayoutProps {
-  children: React.ReactNode
-}
+type LayoutProps = {
+  children: React.ReactNode;
+};
 
 export function loader() {
-  const ENV = loadServerEnv()
+  const ENV = loadServerEnv();
 
-  return { ENV }
+  return { ENV };
 }
 
 export function Layout({ children }: LayoutProps) {
-  const { ENV } = useLoaderData<typeof loader>()
+  const { ENV } = useLoaderData<typeof loader>();
 
   return (
     <html lang="en">
       <head>
         <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
         <Meta />
         <Links />
       </head>
       <body>
         <CenteredLayout>
           <Header />
-          <div className="min-h-screen pb-28 mt-5 tablet:mt-10 tablet:pb-56">
+          <div className="mt-5 tablet:mt-10 min-h-screen pb-28 tablet:pb-56">
             {children}
           </div>
           <Footer />
@@ -50,44 +50,44 @@ export function Layout({ children }: LayoutProps) {
         />
       </body>
     </html>
-  )
+  );
 }
 
 export function ErrorBoundary({ error }) {
-  let message = "Oops!"
-  let details = "An unexpected error occurred."
-  let stack: string | undefined
+  let message = "Oops!";
+  let details = "An unexpected error occurred.";
+  let stack: string | undefined;
 
   if (isRouteErrorResponse(error)) {
-    message = error.status === 404 ? "404" : "Error"
+    message = error.status === 404 ? "404" : "Error";
     details =
       error.status === 404
         ? "The requested page could not be found."
-        : error.statusText || details
+        : error.statusText || details;
   } else if (import.meta.env.DEV && error && error instanceof Error) {
-    details = error.message
-    stack = error.stack
+    details = error.message;
+    stack = error.stack;
   }
 
   return (
-    <main className="flex flex-col items-center text-center pt-16 p-4 container mx-auto">
+    <main className="container mx-auto flex flex-col items-center p-4 pt-16 text-center">
       <h1 className="text-4xl">{message}.</h1>
-      <p className="text-foreground/60 mt-6">{details}</p>
+      <p className="mt-6 text-foreground/60">{details}</p>
       {stack && (
-        <pre className="w-full p-4 overflow-x-auto mt-16">
+        <pre className="mt-16 w-full overflow-x-auto p-4">
           <code>{stack}</code>
         </pre>
       )}
 
-      <div className="flex justify-center items-center mt-16">
+      <div className="mt-16 flex items-center justify-center">
         <Button asChild>
           <Link to={"/"}>Back to home</Link>
         </Button>
       </div>
     </main>
-  )
+  );
 }
 
 export default function App() {
-  return <Outlet />
+  return <Outlet />;
 }
